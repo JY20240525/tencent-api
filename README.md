@@ -36,14 +36,14 @@ SDK 默认引入以下核心依赖：
 ### 1. 初始化签名器
 
 ```java
-IMParamsEncoder imParamsEncoder=new IMParamsEncoder("sdkappid","secretKey");
+IMParamsEncoder imParamsEncoder = new IMParamsEncoder("sdkappid","secretKey");
 
 ```
 
 ### 2. HTTP 客户端
 
 ```java
-TencentApiTemplate tencentApiTemplate=new TencentApiTemplate();
+TencentApiTemplate tencentApiTemplate = new TencentApiTemplate();
 tencentApiTemplate.setHome("https://console.tim.qq.com/");
 tencentApiTemplate.setHttpClient(HttpClients.createDefault());
 ```
