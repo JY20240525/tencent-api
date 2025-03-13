@@ -28,7 +28,7 @@ SDK 默认引入以下核心依赖：
 ##### 腾讯云 IM 相关 SDK 
 1. IM 用户管理 [IMTencentUserService](https://cloud.tencent.com/document/product/269/1608)
 2. IM 会话分组 [IMTencentContactGroupService](https://cloud.tencent.com/document/product/269/85791)
-
+## 使用方式,如果是 Spring 可以声明 Spring Bean 例如：[Spring Demo](doc/Spring.md)
 ### 1. 初始化签名器与 HTTP 客户端
 
 ```java
