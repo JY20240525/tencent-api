@@ -25,26 +25,36 @@ SDK 默认引入以下核心依赖：
 | `hutool-all`     | **5.8.27**      | 实用工具库       |
 
 ## 已功能
-##### 腾讯云 IM 相关 SDK 
+
+##### 腾讯云 IM 相关 SDK
+
 1. IM 用户管理 [IMTencentUserService](https://cloud.tencent.com/document/product/269/1608)
 2. IM 会话分组 [IMTencentContactGroupService](https://cloud.tencent.com/document/product/269/85791)
+
 ## 使用方式,如果是 Spring 可以声明 Spring Bean 例如：[Spring Demo](doc/Spring.md)
-### 1. 初始化签名器与 HTTP 客户端
+
+### 1. 初始化签名器
 
 ```java
-IMParamsEncoder imParamsEncoder = new IMParamsEncoder("sdkappid","secretKey");
-TencentApiTemplate tencentApiTemplate = new TencentApiTemplate();
+IMParamsEncoder imParamsEncoder=new IMParamsEncoder("sdkappid","secretKey");
+
+```
+
+### 2. HTTP 客户端
+
+```java
+TencentApiTemplate tencentApiTemplate=new TencentApiTemplate();
 tencentApiTemplate.setHome("https://console.tim.qq.com/");
 tencentApiTemplate.setHttpClient(HttpClients.createDefault());
 ```
 
-### 2. 创建会话分组的 Service 实例
+### 3. 创建会话分组的 Service 实例
 
 ```java
-IMTencentContactGroupService service = new IMTencentContactGroupServiceImpl(tencentApiTemplate(),imParamsEncoder);
+IMTencentContactGroupService service=new IMTencentContactGroupServiceImpl(tencentApiTemplate(),imParamsEncoder);
 ```
 
-### 3. 示例代码：IM 会话分组管理
+### 4. 示例代码：IM 会话分组管理
 
 ```java
 /**
