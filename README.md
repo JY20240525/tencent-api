@@ -104,7 +104,7 @@ public class IMTencentContactGroupServiceTests {
 
 新增接口只需两步：
 
-1. 声明对应的两个类：
+1. 根据腾讯云提供文档，声明对应的两个类：
     - `*Request extends IMRequest<*Request>`
     - `*Response extends IMResponse`
 2. 实现接口，修改对应的 `Request`、`Response` 和 `URL`。
