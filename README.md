@@ -112,13 +112,20 @@ public class IMTencentContactGroupServiceTests {
 ### Java 实现示例
 
 ```java
-public IMResponse accountImportRequest(AccountImportRequest request) {
-    String url = "/v4/im_open_login_svc/account_import?" + paramsEncoder.encode(request.getParams(), request);
-    TencentResponse response = tencentApiTemplate.post(url, request);
-    
-    Assert.isTrue(response.getStatusCode() == HttpStatus.SC_OK, 
-        "Tencent API 调用错误，状态码: " + response.getStatusCode() + "，响应体: " + response.getBody());
+public class IMTencentUserServiceImpl implements IMTencentUserService {
+   private final TencentApiTemplate tencentApiTemplate;
+   private final ParamsEncoder paramsEncoder;
 
-    return new Gson().fromJson(response.getBody(), ContactGroupAddResponse.class);
+   public IMTencentUserServiceImpl(TencentApiTemplate tencentApiTemplate, ParamsEncoder paramsEncoder) {
+      this.tencentApiTemplate = tencentApiTemplate;
+      this.paramsEncoder = paramsEncoder;
+   }
+   @Override
+   public IMResponse accountImportRequest(AccountImportRequest request) {
+      String url = "/v4/im_open_login_svc/account_import?" + paramsEncoder.encode(request.getParams(), request);
+      TencentResponse response = tencentApiTemplate.post(url, request);
+      Assert.isTrue(response.getStatusCode() == HttpStatus.SC_OK, "Tencent Api 调用错误 status: " + response.getStatusCode() + " body: " + response.getBody());
+      return new Gson().fromJson(response.getBody(), ContactGroupAddResponse.class);
+   }
 }
 ```
