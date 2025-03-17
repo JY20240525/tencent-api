@@ -45,7 +45,7 @@ tencentApiTemplate.setHttpClient(HttpClients.createDefault());
 ### 3. 创建会话分组的 Service 实例
 
 ```java
-IMTencentContactGroupService service=new IMTencentContactGroupServiceImpl(tencentApiTemplate(),imParamsEncoder);
+IMTencentContactGroupService service = new IMTencentContactGroupServiceImpl(tencentApiTemplate(),imParamsEncoder);
 ```
 
 ### 4. 示例代码：IM 会话分组管理
