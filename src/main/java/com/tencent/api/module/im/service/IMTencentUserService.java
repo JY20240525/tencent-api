@@ -1,9 +1,11 @@
 package com.tencent.api.module.im.service;
 
 import com.tencent.api.module.im.model.IMResponse;
+import com.tencent.api.module.im.model.request.AccountCheckRequest;
 import com.tencent.api.module.im.model.request.AccountDeleteRequest;
 import com.tencent.api.module.im.model.request.AccountImportRequest;
 import com.tencent.api.module.im.model.request.MultiAccountImportRequest;
+import com.tencent.api.module.im.model.response.AccountCheckResponse;
 import com.tencent.api.module.im.model.response.AccountDeleteResponse;
 import com.tencent.api.module.im.model.response.MultiAccountImportResponse;
 
@@ -31,4 +33,9 @@ public interface IMTencentUserService {
      * 删除账号
      */
     AccountDeleteResponse accountDelete(AccountDeleteRequest request);
+
+    /**
+     * 查询账号
+     */
+    AccountCheckResponse accountCheck(AccountCheckRequest request);
 }

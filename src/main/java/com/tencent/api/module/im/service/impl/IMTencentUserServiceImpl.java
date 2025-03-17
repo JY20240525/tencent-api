@@ -6,9 +6,11 @@ import com.tencent.api.TencentApiTemplate;
 import com.tencent.api.core.context.TencentResponse;
 import com.tencent.api.core.crypto.ParamsEncoder;
 import com.tencent.api.module.im.model.IMResponse;
+import com.tencent.api.module.im.model.request.AccountCheckRequest;
 import com.tencent.api.module.im.model.request.AccountDeleteRequest;
 import com.tencent.api.module.im.model.request.AccountImportRequest;
 import com.tencent.api.module.im.model.request.MultiAccountImportRequest;
+import com.tencent.api.module.im.model.response.AccountCheckResponse;
 import com.tencent.api.module.im.model.response.AccountDeleteResponse;
 import com.tencent.api.module.im.model.response.ContactGroupAddResponse;
 import com.tencent.api.module.im.model.response.MultiAccountImportResponse;
@@ -52,5 +54,13 @@ public class IMTencentUserServiceImpl implements IMTencentUserService {
         TencentResponse response = tencentApiTemplate.post(url, request);
         Assert.isTrue(response.getStatusCode() == HttpStatus.SC_OK, "Tencent Api 调用错误 status: " + response.getStatusCode() + " body: " + response.getBody());
         return new Gson().fromJson(response.getBody(), AccountDeleteResponse.class);
+    }
+
+    @Override
+    public AccountCheckResponse accountCheck(AccountCheckRequest request) {
+        String url = "/v4/im_open_login_svc/account_check?" + paramsEncoder.encode(request.getParams(), request);
+        TencentResponse response = tencentApiTemplate.post(url, request);
+        Assert.isTrue(response.getStatusCode() == HttpStatus.SC_OK, "Tencent Api 调用错误 status: " + response.getStatusCode() + " body: " + response.getBody());
+        return new Gson().fromJson(response.getBody(), AccountCheckResponse.class);
     }
 }
