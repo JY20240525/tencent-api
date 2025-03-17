@@ -21,8 +21,9 @@ SDK 默认引入以下核心依赖：
 
 ##### 腾讯云 IM 相关 SDK
 
-1. IM 用户管理 [IMTencentUserService](https://cloud.tencent.com/document/product/269/1608)
-2. IM 会话分组 [IMTencentContactGroupService](https://cloud.tencent.com/document/product/269/85791)
+1. IM 用户管理 [IMTencentUserService](src/main/java/com/tencent/api/module/im/service/IMTencentUserService)
+2. IM
+   会话分组 [IMTencentContactGroupService](src/main/java/com/tencent/api/module/im/service/IMTencentContactGroupService)
 
 ## 使用方式,如果是 Spring 可以声明 Spring Bean 例如：[Spring Demo](doc/Spring.md)
 * Test 案例 `IMTencentContactGroupServiceTests`
@@ -109,5 +110,28 @@ public class IMTencentContactGroupServiceTests {
     public static void main(String[] args) {
         addGroup();
     }
+}
+```
+
+## 新增接口也很简单
+
+新增接口只需两步：
+
+1. 声明对应的两个类：
+    - `*Request extends IMRequest<*Request>`
+    - `*Response extends IMResponse`
+2. 实现接口，修改对应的 `Request`、`Response` 和 `URL`。
+
+### Java 实现示例
+
+```java
+public IMResponse accountImportRequest(AccountImportRequest request) {
+    String url = "/v4/im_open_login_svc/account_import?" + paramsEncoder.encode(request.getParams(), request);
+    TencentResponse response = tencentApiTemplate.post(url, request);
+    
+    Assert.isTrue(response.getStatusCode() == HttpStatus.SC_OK, 
+        "Tencent API 调用错误，状态码: " + response.getStatusCode() + "，响应体: " + response.getBody());
+
+    return new Gson().fromJson(response.getBody(), ContactGroupAddResponse.class);
 }
 ```
