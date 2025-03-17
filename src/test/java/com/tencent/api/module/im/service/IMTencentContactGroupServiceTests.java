@@ -28,7 +28,7 @@ public class IMTencentContactGroupServiceTests {
     /**
      * 要注意保密，如有泄漏应尽快重新重成。
      */
-    private static final String SECRET_KEY = "腾讯提空秘钥";
+    private static final String SECRET_KEY = "腾讯提供秘钥";
 
     /**
      * 签名生成器
