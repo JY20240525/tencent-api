@@ -55,23 +55,13 @@ IMTencentContactGroupService service=new IMTencentContactGroupServiceImpl(tencen
  * IMTencentContactGroupService 测试类
  */
 public class IMTencentContactGroupServiceTests {
-    private static final String HOME = "https://console.tim.qq.com/";
-
-    /**
-     * SDK App ID（由腾讯提供）
-     */
-    private static final String SDK_APP_ID = "腾讯提供";
-
-    /**
-     * 密钥（请妥善保管，若泄露请尽快重新生成）
-     */
-    private static final String SECRET_KEY = "腾讯提供密钥";
-
     /**
      * 创建签名生成器
      */
     public static IMParamsEncoder imParamsEncoder() {
-        return new IMParamsEncoder(SDK_APP_ID, SECRET_KEY);
+        // SDK App ID（由腾讯提供）
+        // 密钥（请妥善保管，若泄露请尽快重新生成）
+        return new IMParamsEncoder("腾讯提供 SDK_APP_ID", "腾讯提供密钥");
     }
 
     /**
@@ -79,7 +69,8 @@ public class IMTencentContactGroupServiceTests {
      */
     public static TencentApiTemplate tencentApiTemplate() {
         TencentApiTemplate tencentApiTemplate = new TencentApiTemplate();
-        tencentApiTemplate.setHome(HOME);
+        tencentApiTemplate.setHome("https://console.tim.qq.com/");
+        // 可以设置代理
         tencentApiTemplate.setHttpClient(HttpClients.createDefault());
         return tencentApiTemplate;
     }
@@ -105,10 +96,6 @@ public class IMTencentContactGroupServiceTests {
         System.out.println("- 返回结果：");
         System.out.println('-' + SONUtil.toJsonStr(response));
         System.out.println("- ------------------------------------------------------------------");
-    }
-
-    public static void main(String[] args) {
-        addGroup();
     }
 }
 ```
