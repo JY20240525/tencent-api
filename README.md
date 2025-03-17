@@ -129,3 +129,5 @@ public class IMTencentUserServiceImpl implements IMTencentUserService {
    }
 }
 ```
+### 实现的案例
+![代码案例](doc/demo.png)
