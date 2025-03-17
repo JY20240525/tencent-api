@@ -1,6 +1,6 @@
 # tencent-api
 
-`tencent-api` 基于腾讯云官方文档开发，是一款用于与 **腾讯云通信 IM** 交互的 **Java SDK**。  
+`tencent-api` 基于腾讯云官方文档开发，是一款用于与 **腾讯云通信 IM**  **Java SDK**。  
 该 SDK 设计简洁、易用，并持续更新，便于开发者快速集成和扩展。
 
 ## Maven 依赖
