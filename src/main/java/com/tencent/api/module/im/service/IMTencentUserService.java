@@ -12,5 +12,8 @@ import com.tencent.api.module.im.model.request.AccountImportRequest;
  */
 public interface IMTencentUserService {
 
+    /**
+     * 导入单个账号
+     */
     IMResponse accountImportRequest(AccountImportRequest request);
 }

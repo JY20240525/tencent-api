@@ -21,9 +21,9 @@ SDK 默认引入以下核心依赖：
 
 ##### 腾讯云 IM 相关 SDK
 
-1. IM 用户管理 [IMTencentUserService](src/main/java/com/tencent/api/module/im/service/IMTencentUserService)
+1. IM 用户管理 [IMTencentUserService](src/main/java/com/tencent/api/module/im/service/IMTencentUserService.java)
 2. IM
-   会话分组 [IMTencentContactGroupService](src/main/java/com/tencent/api/module/im/service/IMTencentContactGroupService)
+   会话分组 [IMTencentContactGroupService](src/main/java/com/tencent/api/module/im/service/IMTencentContactGroupService.java)
 
 ## 使用方式,如果是 Spring 可以声明 Spring Bean 例如：[Spring Demo](doc/Spring.md)
 * Test 案例 `IMTencentContactGroupServiceTests`
