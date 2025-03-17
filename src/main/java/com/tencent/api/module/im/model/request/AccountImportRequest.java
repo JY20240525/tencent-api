@@ -3,6 +3,7 @@ package com.tencent.api.module.im.model.request;
 import com.google.gson.annotations.SerializedName;
 import com.tencent.api.module.im.model.IMRequest;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 
@@ -21,6 +22,7 @@ import java.io.Serializable;
  * FaceUrl  String  否   用户头像 URL
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class AccountImportRequest extends IMRequest<AccountImportRequest> implements Serializable {
     @SerializedName("UserID")
     private String userId;
@@ -28,6 +30,20 @@ public class AccountImportRequest extends IMRequest<AccountImportRequest> implem
     private String nick;
     @SerializedName("FaceUrl")
     private String faceUrl;
+
+    /**
+     * @param identifier 用户名，调用 REST API 时必须为 App 管理员账号
+     */
+    public AccountImportRequest(String identifier) {
+        super(identifier);
+    }
+
+    public AccountImportRequest(String identifier, String userId, String nick, String faceUrl) {
+        super(identifier);
+        this.userId = userId;
+        this.nick = nick;
+        this.faceUrl = faceUrl;
+    }
 
     @Override
     public AccountImportRequest getData() {

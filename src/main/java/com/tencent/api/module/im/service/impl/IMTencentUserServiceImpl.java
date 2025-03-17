@@ -6,8 +6,12 @@ import com.tencent.api.TencentApiTemplate;
 import com.tencent.api.core.context.TencentResponse;
 import com.tencent.api.core.crypto.ParamsEncoder;
 import com.tencent.api.module.im.model.IMResponse;
+import com.tencent.api.module.im.model.request.AccountDeleteRequest;
 import com.tencent.api.module.im.model.request.AccountImportRequest;
+import com.tencent.api.module.im.model.request.MultiAccountImportRequest;
+import com.tencent.api.module.im.model.response.AccountDeleteResponse;
 import com.tencent.api.module.im.model.response.ContactGroupAddResponse;
+import com.tencent.api.module.im.model.response.MultiAccountImportResponse;
 import com.tencent.api.module.im.service.IMTencentUserService;
 import org.apache.http.HttpStatus;
 
@@ -25,11 +29,28 @@ public class IMTencentUserServiceImpl implements IMTencentUserService {
         this.tencentApiTemplate = tencentApiTemplate;
         this.paramsEncoder = paramsEncoder;
     }
+
     @Override
     public IMResponse accountImportRequest(AccountImportRequest request) {
         String url = "/v4/im_open_login_svc/account_import?" + paramsEncoder.encode(request.getParams(), request);
         TencentResponse response = tencentApiTemplate.post(url, request);
         Assert.isTrue(response.getStatusCode() == HttpStatus.SC_OK, "Tencent Api 调用错误 status: " + response.getStatusCode() + " body: " + response.getBody());
         return new Gson().fromJson(response.getBody(), ContactGroupAddResponse.class);
+    }
+
+    @Override
+    public MultiAccountImportResponse multiAccountImport(MultiAccountImportRequest request) {
+        String url = "/v4/im_open_login_svc/multiaccount_import?" + paramsEncoder.encode(request.getParams(), request);
+        TencentResponse response = tencentApiTemplate.post(url, request);
+        Assert.isTrue(response.getStatusCode() == HttpStatus.SC_OK, "Tencent Api 调用错误 status: " + response.getStatusCode() + " body: " + response.getBody());
+        return new Gson().fromJson(response.getBody(), MultiAccountImportResponse.class);
+    }
+
+    @Override
+    public AccountDeleteResponse accountDelete(AccountDeleteRequest request) {
+        String url = "/v4/im_open_login_svc/account_delete?" + paramsEncoder.encode(request.getParams(), request);
+        TencentResponse response = tencentApiTemplate.post(url, request);
+        Assert.isTrue(response.getStatusCode() == HttpStatus.SC_OK, "Tencent Api 调用错误 status: " + response.getStatusCode() + " body: " + response.getBody());
+        return new Gson().fromJson(response.getBody(), AccountDeleteResponse.class);
     }
 }
