@@ -1,13 +1,8 @@
 package com.tencent.api.module.im.service;
 
 import com.tencent.api.module.im.model.IMResponse;
-import com.tencent.api.module.im.model.request.AccountCheckRequest;
-import com.tencent.api.module.im.model.request.AccountDeleteRequest;
-import com.tencent.api.module.im.model.request.AccountImportRequest;
-import com.tencent.api.module.im.model.request.MultiAccountImportRequest;
-import com.tencent.api.module.im.model.response.AccountCheckResponse;
-import com.tencent.api.module.im.model.response.AccountDeleteResponse;
-import com.tencent.api.module.im.model.response.MultiAccountImportResponse;
+import com.tencent.api.module.im.model.request.*;
+import com.tencent.api.module.im.model.response.*;
 
 /**
  * @author raolei
@@ -38,4 +33,14 @@ public interface IMTencentUserService {
      * 查询账号
      */
     AccountCheckResponse accountCheck(AccountCheckRequest request);
+
+    /**
+     * 设置资料
+     */
+    PortraitSetResponse portraitSet(PortraitSetRequest request);
+
+    /**
+     * 拉取资料
+     */
+    PortraitGetResponse portraitGet(PortraitGetRequest request);
 }

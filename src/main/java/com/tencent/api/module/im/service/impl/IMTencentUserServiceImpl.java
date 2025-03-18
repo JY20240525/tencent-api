@@ -6,14 +6,8 @@ import com.tencent.api.TencentApiTemplate;
 import com.tencent.api.core.context.TencentResponse;
 import com.tencent.api.core.crypto.ParamsEncoder;
 import com.tencent.api.module.im.model.IMResponse;
-import com.tencent.api.module.im.model.request.AccountCheckRequest;
-import com.tencent.api.module.im.model.request.AccountDeleteRequest;
-import com.tencent.api.module.im.model.request.AccountImportRequest;
-import com.tencent.api.module.im.model.request.MultiAccountImportRequest;
-import com.tencent.api.module.im.model.response.AccountCheckResponse;
-import com.tencent.api.module.im.model.response.AccountDeleteResponse;
-import com.tencent.api.module.im.model.response.ContactGroupAddResponse;
-import com.tencent.api.module.im.model.response.MultiAccountImportResponse;
+import com.tencent.api.module.im.model.request.*;
+import com.tencent.api.module.im.model.response.*;
 import com.tencent.api.module.im.service.IMTencentUserService;
 import org.apache.http.HttpStatus;
 
@@ -62,5 +56,21 @@ public class IMTencentUserServiceImpl implements IMTencentUserService {
         TencentResponse response = tencentApiTemplate.post(url, request);
         Assert.isTrue(response.getStatusCode() == HttpStatus.SC_OK, "Tencent Api 调用错误 status: " + response.getStatusCode() + " body: " + response.getBody());
         return new Gson().fromJson(response.getBody(), AccountCheckResponse.class);
+    }
+
+    @Override
+    public PortraitSetResponse portraitSet(PortraitSetRequest request) {
+        String url = "/v4/profile/portrait_set?" + paramsEncoder.encode(request.getParams(), request);
+        TencentResponse response = tencentApiTemplate.post(url, request);
+        Assert.isTrue(response.getStatusCode() == HttpStatus.SC_OK, "Tencent Api 调用错误 status: " + response.getStatusCode() + " body: " + response.getBody());
+        return new Gson().fromJson(response.getBody(), PortraitSetResponse.class);
+    }
+
+    @Override
+    public PortraitGetResponse portraitGet(PortraitGetRequest request) {
+        String url = "/v4/profile/portrait_get?" + paramsEncoder.encode(request.getParams(), request);
+        TencentResponse response = tencentApiTemplate.post(url, request);
+        Assert.isTrue(response.getStatusCode() == HttpStatus.SC_OK, "Tencent Api 调用错误 status: " + response.getStatusCode() + " body: " + response.getBody());
+        return new Gson().fromJson(response.getBody(), PortraitGetResponse.class);
     }
 }
